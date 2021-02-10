@@ -1,6 +1,6 @@
-export function setYear(year){
+export function setYear(year) {
 	return {
-		type: 'SET_YEAR',
-		payload: year
-	}
+		type: "SET_YEAR",
+		payload: year,
+	};
 }
