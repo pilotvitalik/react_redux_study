@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import User from '../components/User.js';
 import Page from '../components/Page.js';
+import setYear from '../store/actions/PageActions.js';
 
 import "./App.css";
 
 class App extends Component {
   render() {
-    const { user, page } = this.props;
+    const { user, page, setYearAction } = this.props;
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Мой топ фото</h1>
         </header>
         <User name={ user.name } />
-        <Page photos={page.photos} year={page.year}/> 
+        <Page photos={page.photos} year={page.year} setYear={setYearAction}/> 
       </div>
     );
   }
@@ -29,5 +30,11 @@ const mapStateToProps = (store) => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return{
+    setYearAction: year => dispatch(setYear(year)), [1]
+  }
+}
+
 // в наш компонент App, с помощью connect(mapStateToProps)
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
